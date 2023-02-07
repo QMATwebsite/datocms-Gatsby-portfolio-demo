@@ -129,9 +129,7 @@ exports.createPages = ({ graphql, actions }) => {
           component: path.resolve(`./src/templates/publications.js`),
           context: {
             slug: slug,
-            filter: labFilter,
-            filter2: labFilter2
-			  
+            filter: labFilter
           }
         });
 

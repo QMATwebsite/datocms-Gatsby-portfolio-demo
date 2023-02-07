@@ -1,0 +1,73 @@
+@import '../../styles/mixins/responsive.scss';
+
+.labnavigation {
+  position: relative;
+  margin-left: auto;
+
+  @include media-breakpoint-down(md) {
+    display: none;
+    text-align: center;
+
+    .mobile-nav-visible & {
+      display: block;
+      margin-top: var(--spacing);
+    }
+  }
+
+  .btn {
+    min-width: 8rem;
+    box-shadow: none;
+    background-color: var(--color-primary);
+
+    @include media-breakpoint-down(md) {
+      width: 10rem;
+      text-align: center;
+      margin: 0;
+      box-shadow: 0;
+      background-color: var(--color-primary-d10); // Mobile has no hover state
+
+      span {
+        padding-left: var(--spacing);
+      }
+
+      &:hover,
+      &:focus {
+        top: 0;
+        left: 0;
+      }
+    }
+  }
+}
+
+.labnavigation_menu {
+  position: absolute;
+  width: 10rem;
+  list-style-type: none;
+  top: 100%;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  margin-top: 0;
+  padding: 0;
+  background-color: var(--color-primary-d10);
+  z-index: 10;
+
+  li {
+    padding: var(--spacing);
+  }
+
+  @include media-breakpoint-up(lg) {
+    width: calc(100% - var(--spacing));
+    top: calc(100% + var(--spacing-xs));
+    left: calc(var(--spacing-xs) + 1px);
+    transform: none;
+  }
+}
+
+.labnavigation_menu-item {
+  color: white;
+
+  &:hover,
+  &:focus {
+    color: white;
+  }
+}

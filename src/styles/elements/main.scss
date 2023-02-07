@@ -1,0 +1,7 @@
+@import "../mixins/responsive.scss";
+
+main {
+  @include media-breakpoint-down(md) {
+    padding-top: 5rem;
+  }
+}
