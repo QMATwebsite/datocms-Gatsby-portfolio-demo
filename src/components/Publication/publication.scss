@@ -1,0 +1,29 @@
+.publication {
+  display: flex;
+  margin-top: var(--spacing-xl);
+  
+  span {
+    display: block;
+    padding-bottom: var(--spacing);
+    line-height: var(--line-height-lg);
+  }
+  
+  + hr {
+    display: block;
+    margin: var(--spacing-md) 0;
+  }
+}
+
+.publication_thumbnail {
+  display: inline-block;
+  margin-right: var(--spacing-lg);
+  flex-shrink: 0;
+}
+
+.publication_link {
+  margin-left: var(--spacing);
+
+  svg {
+    width: var(--font-size-sm);
+  }
+}

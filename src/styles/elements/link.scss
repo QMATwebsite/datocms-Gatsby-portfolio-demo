@@ -1,0 +1,10 @@
+a {
+    display: inline-block;
+    color: var(--color-primary);
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        color: var(--color-primary-d10);
+    }
+}

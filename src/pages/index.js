@@ -1,51 +1,84 @@
-import React from 'react'
-import { Link, graphql } from 'gatsby'
-import Masonry from 'react-masonry-component'
-import Img from 'gatsby-image'
-import Layout from "../components/layout"
+import React from 'react';
+import { graphql } from 'gatsby';
+import { HelmetDatoCms } from 'gatsby-source-datocms';
+import { Row, Col } from 'react-flexbox-grid';
+
+import Layout from '../components/Layout/layout';
+import Section from '../components/Section/section';
+import {MemberSectionColumns } from '../components/MemberSection/memberSection';
+import HighlightSection from '../components/HighlightSection/highlightSection';
 
 const IndexPage = ({ data }) => (
   <Layout>
-    <Masonry className="showcase">
-      {data.allDatoCmsWork.edges.map(({ node: work }) => (
-        <div key={work.id} className="showcase__item">
-          <figure className="card">
-            <Link to={`/works/${work.slug}`} className="card__image">
-              <Img fluid={work.coverImage.fluid} />
-            </Link>
-            <figcaption className="card__caption">
-              <h6 className="card__title">
-                <Link to={`/works/${work.slug}`}>{work.title}</Link>
-              </h6>
-              <div className="card__description">
-                <p>{work.excerpt}</p>
-              </div>
-            </figcaption>
-          </figure>
-        </div>
-      ))}
-    </Masonry>
+    <HelmetDatoCms seo={data.home.seoMetaTags} />
+    <Section>
+      <Row center="sm">
+        <Col xs={12} md={7}>
+          {data && data.home && (
+            <div>
+              <h1>{data.home.title}</h1>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: data.home.introTextNode.childMarkdownRemark.html
+                }}
+              />
+            </div>
+          )}
+        </Col>
+      </Row>
+      {data.highlights.nodes && <HighlightSection highlights={data.highlights.nodes} />}
+    </Section>
+    {data.labs && (
+      <MemberSectionColumns
+        members={data.labs.nodes
+          .filter((lab) => lab.principal)
+          .map((lab) => lab.principal)}
+      />
+    )}
   </Layout>
-)
+);
 
-export default IndexPage
+export default IndexPage;
 
 export const query = graphql`
   query IndexQuery {
-    allDatoCmsWork(sort: { fields: [position], order: ASC }) {
-      edges {
-        node {
-          id
-          title
-          slug
-          excerpt
-          coverImage {
-            fluid(maxWidth: 450, imgixParams: { fm: "jpg", auto: "compress" }) {
-              ...GatsbyDatoCmsSizes
+    home: datoCmsHome {
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
+      title
+      introTextNode {
+        childMarkdownRemark {
+          html
+        }
+      }
+    }
+    labs: allDatoCmsLab {
+      nodes {
+        principal {
+          name
+          description
+          image: photo {
+            fixed(width: 150, height: 150, imgixParams: {faceindex: 1, facepad: 3, fit: "facearea"}) {
+              ...GatsbyDatoCmsFixed
             }
           }
         }
       }
     }
+    highlights: allDatoCmsHighlight(limit: 3) {
+      nodes {
+        slug
+        title
+        image {
+          fluid {
+            ...GatsbyDatoCmsFluid
+          }
+        }
+        lab {
+          slug
+        }
+      }
+    }
   }
-`
+`;
