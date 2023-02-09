@@ -130,6 +130,7 @@ exports.createPages = ({ graphql, actions }) => {
           context: {
             slug: slug,
             filter: labFilter
+			  
           }
         });
 
@@ -157,3 +158,4 @@ exports.createPages = ({ graphql, actions }) => {
   });
 
   return Promise.all([overviews, articles]);
+};
