@@ -4,7 +4,7 @@ This repo contains a static website written with [GatsbyJS](https://www.gatsbyjs
 
 ![Preview](preview.png)
 
-[See the live demo](https://demo-datocms-gatsby.netlify.com/)
+[See the live demo](https://cranky-edison-12166d.netlify.com/)
 
 If you want to use try this out yourself, you first need to set up a project on DatoCMS which will host your data.
 
@@ -48,6 +48,6 @@ You can find further information about how to integrate DatoCMS with Gatsby in [
 
 This websites uses:
 
-- [Yarn](https://yarnpkg.com/) as package manager;
-- [GatsbyJS](https://github.com/gatsbyjs/gatsby) as website generator;
-- [gatsby-source-datocms](https://github.com/datocms/gatsby-source-datocms) to integrate the website with DatoCMS.
+* [Yarn](https://yarnpkg.com/) as package manager;
+* [GatsbyJS](https://github.com/gatsbyjs/gatsby) as website generator;
+* [gatsby-source-datocms](https://github.com/datocms/gatsby-source-datocms) to integrate the website with DatoCMS.

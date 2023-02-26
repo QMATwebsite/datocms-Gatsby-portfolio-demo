@@ -130,7 +130,6 @@ exports.createPages = ({ graphql, actions }) => {
           context: {
             slug: slug,
             filter: labFilter
-			  
           }
         });
 
